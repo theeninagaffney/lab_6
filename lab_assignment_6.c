@@ -1,8 +1,21 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 int search(int numbers[], int low, int high, int value) 
 {
-	return -1;
+	int mid = (low + high) / 2;
+	if(value == numbers[mid]){
+		return mid;
+	}
+	if(low > high){
+		return -1;
+	}
+	if(value < numbers[mid]){
+		return search(numbers, low, mid - 1, value);
+	}
+	if(value > numbers[mid]){
+		return search(numbers, mid + 1, high, value);
+	}
 }
 
 void printArray(int numbers[], int sz)
@@ -52,6 +65,7 @@ int main(void)
 		{
 			printf("Item %d does not exist in the number array!\n", value);
 		}
+
 
 		free(numArray);
 	}
